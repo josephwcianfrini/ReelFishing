@@ -5,6 +5,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { Menu, X, Fish, ShoppingBag } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { useCart } from "@/context/CartContext";
 
 const navLinks = [
   { href: "/", label: "Shop" },
@@ -16,6 +17,7 @@ export default function Navbar() {
   const pathname = usePathname();
   const [mobileOpen, setMobileOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const { totalItems } = useCart();
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 20);
@@ -67,15 +69,18 @@ export default function Navbar() {
                 />
               </Link>
             ))}
-            <button
-              className="relative p-2 text-charcoal hover:text-moss transition-colors duration-300 hover-scale cursor-pointer"
+            <Link
+              href="/cart"
+              className="relative p-2 text-charcoal hover:text-moss transition-colors duration-300 hover-scale"
               aria-label="Shopping cart"
             >
               <ShoppingBag className="w-5 h-5" />
-              <span className="absolute -top-1 -right-1 w-4 h-4 bg-rust text-white text-[10px] font-bold rounded-full flex items-center justify-center">
-                0
-              </span>
-            </button>
+              {totalItems > 0 && (
+                <span className="absolute -top-1 -right-1 w-4 h-4 bg-rust text-white text-[10px] font-bold rounded-full flex items-center justify-center">
+                  {totalItems > 9 ? "9+" : totalItems}
+                </span>
+              )}
+            </Link>
           </div>
 
           {/* Mobile Menu Button */}
