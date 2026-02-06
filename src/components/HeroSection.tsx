@@ -32,28 +32,22 @@ export default function HeroSection() {
           Born on the Bayou &bull; Built for the Water
         </p>
 
-        {/* Main title - Western cowboy font */}
+        {/* Main title */}
         <h1 className="font-heading text-6xl sm:text-7xl md:text-8xl lg:text-9xl text-cream mb-6 leading-tight animate-[fadeInUp_0.8s_ease-out]">
           Reel Fishing
         </h1>
 
-        {/* Western divider */}
+        {/* Decorative divider - fleur-de-lis inspired */}
         <div className="flex items-center justify-center gap-4 mb-6 animate-[fadeIn_1.2s_ease-out]">
           <div className="h-px w-16 bg-gradient-to-r from-transparent to-sand" />
-          <svg
-            className="w-6 h-6 text-sand"
-            viewBox="0 0 24 24"
-            fill="currentColor"
-          >
-            <path d="M12 2L9.19 8.63L2 9.24L7.46 13.97L5.82 21L12 17.27L18.18 21L16.54 13.97L22 9.24L14.81 8.63L12 2Z" />
-          </svg>
+          <span className="text-sand text-xl">&#9874;</span>
           <div className="h-px w-16 bg-gradient-to-l from-transparent to-sand" />
         </div>
 
         {/* Subtitle */}
         <p className="text-cream/70 text-lg sm:text-xl md:text-2xl font-light mb-10 max-w-2xl mx-auto leading-relaxed animate-[fadeIn_1.4s_ease-out]">
           Premium southern fishing apparel with
-          <span className="text-sand font-normal"> western soul</span>
+          <span className="text-sand font-normal"> bayou soul</span>
         </p>
 
         {/* CTA Buttons */}

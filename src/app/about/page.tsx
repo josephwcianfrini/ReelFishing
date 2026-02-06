@@ -58,9 +58,7 @@ export default function AboutPage() {
           </h1>
           <div className="flex items-center justify-center gap-4 mb-6">
             <div className="h-px w-16 bg-gradient-to-r from-transparent to-sand" />
-            <svg className="w-5 h-5 text-sand" viewBox="0 0 24 24" fill="currentColor">
-              <path d="M12 2L9.19 8.63L2 9.24L7.46 13.97L5.82 21L12 17.27L18.18 21L16.54 13.97L22 9.24L14.81 8.63L12 2Z" />
-            </svg>
+            <span className="text-sand text-xl">&#9874;</span>
             <div className="h-px w-16 bg-gradient-to-l from-transparent to-sand" />
           </div>
         </div>
@@ -109,8 +107,8 @@ export default function AboutPage() {
                   live every single day.
                 </p>
                 <p>
-                  Our gear blends the rugged, no-nonsense spirit of the western
-                  outdoors with the laid-back soul of bayou country. We design
+                  Our gear captures the rugged, no-nonsense spirit of southern
+                  Louisiana and the laid-back soul of bayou country. We design
                   for the angler who wakes up before dawn, respects the water,
                   and knows that the best days are spent with a rod in hand.
                 </p>
@@ -120,10 +118,8 @@ export default function AboutPage() {
 
           {/* Mission */}
           <div className="text-center max-w-3xl mx-auto mb-20">
-            <div className="western-divider mb-6">
-              <svg className="w-5 h-5 text-sand-dark" viewBox="0 0 24 24" fill="currentColor">
-                <path d="M12 2L9.19 8.63L2 9.24L7.46 13.97L5.82 21L12 17.27L18.18 21L16.54 13.97L22 9.24L14.81 8.63L12 2Z" />
-              </svg>
+            <div className="bayou-divider mb-6">
+              <span className="text-sand-dark text-xl">&#9874;</span>
             </div>
             <h2 className="font-heading text-3xl text-bark-dark mb-6">
               Our Mission

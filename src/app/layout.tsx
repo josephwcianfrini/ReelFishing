@@ -7,7 +7,7 @@ import { CartProvider } from "@/context/CartContext";
 export const metadata: Metadata = {
   title: "Reel Fishing | Southern Louisiana Fishing Apparel",
   description:
-    "Premium fishing apparel with a southern Louisiana feel and western style. Born on the bayou, built for the water.",
+    "Premium fishing apparel with a southern Louisiana feel. Born on the bayou, built for the water.",
 };
 
 export default function RootLayout({
@@ -25,7 +25,7 @@ export default function RootLayout({
           crossOrigin="anonymous"
         />
         <link
-          href="https://fonts.googleapis.com/css2?family=Rye&family=Lato:wght@300;400;700;900&display=swap"
+          href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700;900&family=Lato:wght@300;400;700;900&display=swap"
           rel="stylesheet"
         />
       </head>

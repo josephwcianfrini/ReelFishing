@@ -1,7 +1,7 @@
 @import "tailwindcss";
 
 @theme {
-  /* Fishing / Western Color Palette */
+  /* Southern Louisiana Color Palette */
   --color-moss: #4A5D23;
   --color-moss-light: #6B7F3A;
   --color-moss-dark: #354218;
@@ -24,7 +24,7 @@
   --color-charcoal: #2D2D2D;
   --color-charcoal-light: #404040;
 
-  --font-heading: "Rye", cursive;
+  --font-heading: "Playfair Display", serif;
   --font-body: "Lato", sans-serif;
 }
 
@@ -61,18 +61,21 @@ body {
   opacity: 1;
 }
 
-/* Western divider */
+/* Bayou divider */
+.bayou-divider,
 .western-divider {
   display: flex;
   align-items: center;
   gap: 1rem;
 }
+.bayou-divider::before,
+.bayou-divider::after,
 .western-divider::before,
 .western-divider::after {
   content: "";
   flex: 1;
-  height: 2px;
-  background: linear-gradient(to right, transparent, var(--color-sand-dark), transparent);
+  height: 1px;
+  background: linear-gradient(to right, transparent, var(--color-bayou-light), transparent);
 }
 
 /* Page transition */

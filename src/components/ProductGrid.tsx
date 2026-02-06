@@ -24,14 +24,8 @@ export default function ProductGrid() {
           <h2 className="font-heading text-4xl sm:text-5xl text-bark-dark mb-4">
             Shop Our Gear
           </h2>
-          <div className="western-divider max-w-xs mx-auto mb-6">
-            <svg
-              className="w-5 h-5 text-sand-dark"
-              viewBox="0 0 24 24"
-              fill="currentColor"
-            >
-              <path d="M12 2L9.19 8.63L2 9.24L7.46 13.97L5.82 21L12 17.27L18.18 21L16.54 13.97L22 9.24L14.81 8.63L12 2Z" />
-            </svg>
+          <div className="bayou-divider max-w-xs mx-auto mb-6">
+            <span className="text-sand-dark text-xl">&#9874;</span>
           </div>
           <p className="text-charcoal-light max-w-xl mx-auto">
             Apparel crafted for anglers who live the lifestyle. Every piece is
