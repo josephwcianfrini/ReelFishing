@@ -1,10 +1,40 @@
 "use client";
 
-import React from "react";
+import React, { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 
 export default function NewsletterSection() {
+  const [email, setEmail] = useState("");
+  const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
+  const [message, setMessage] = useState("");
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setStatus("loading");
+
+    try {
+      const res = await fetch("/api/newsletter", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email }),
+      });
+
+      const result = await res.json();
+
+      if (!res.ok) {
+        throw new Error(result.error || "Failed to sign up");
+      }
+
+      setStatus("success");
+      setMessage(result.message);
+      setEmail("");
+    } catch (err) {
+      setStatus("error");
+      setMessage(err instanceof Error ? err.message : "Something went wrong");
+    }
+  };
+
   return (
     <section className="py-20 bg-gradient-to-br from-moss-dark to-bayou-dark text-cream relative overflow-hidden">
       {/* Background pattern */}
@@ -28,19 +58,45 @@ export default function NewsletterSection() {
           Get first access to new drops, exclusive deals, and fishing tips
           straight from the bayou.
         </p>
-        <form
-          onSubmit={(e) => e.preventDefault()}
-          className="flex flex-col sm:flex-row gap-3 max-w-md mx-auto"
-        >
-          <Input
-            type="email"
-            placeholder="your@email.com"
-            className="flex-1 bg-white/10 border-white/20 text-cream placeholder:text-cream/40 focus-visible:ring-sand"
-          />
-          <Button variant="sand" size="lg" className="uppercase tracking-wider">
-            Sign Up
-          </Button>
-        </form>
+
+        {status === "success" ? (
+          <div className="animate-[fadeIn_0.5s_ease-out]">
+            <p className="text-sand font-semibold text-lg mb-2">{message}</p>
+            <button
+              onClick={() => setStatus("idle")}
+              className="text-cream/60 hover:text-cream text-sm underline transition-colors cursor-pointer"
+            >
+              Sign up another email
+            </button>
+          </div>
+        ) : (
+          <>
+            <form
+              onSubmit={handleSubmit}
+              className="flex flex-col sm:flex-row gap-3 max-w-md mx-auto"
+            >
+              <Input
+                type="email"
+                placeholder="your@email.com"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                required
+                className="flex-1 bg-white/10 border-white/20 text-cream placeholder:text-cream/40 focus-visible:ring-sand"
+              />
+              <Button
+                variant="sand"
+                size="lg"
+                className="uppercase tracking-wider"
+                disabled={status === "loading"}
+              >
+                {status === "loading" ? "Signing Up..." : "Sign Up"}
+              </Button>
+            </form>
+            {status === "error" && (
+              <p className="text-rust-light text-sm mt-3">{message}</p>
+            )}
+          </>
+        )}
       </div>
     </section>
   );

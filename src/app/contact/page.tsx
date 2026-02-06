@@ -35,10 +35,41 @@ const contactInfo = [
 
 export default function ContactPage() {
   const [submitted, setSubmitted] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState("");
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    setSubmitted(true);
+    setLoading(true);
+    setError("");
+
+    const formData = new FormData(e.currentTarget);
+    const data = {
+      firstName: formData.get("firstName"),
+      lastName: formData.get("lastName"),
+      email: formData.get("email"),
+      subject: formData.get("subject"),
+      message: formData.get("message"),
+    };
+
+    try {
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(data),
+      });
+
+      if (!res.ok) {
+        const result = await res.json();
+        throw new Error(result.error || "Failed to send message");
+      }
+
+      setSubmitted(true);
+    } catch (err) {
+      setError(err instanceof Error ? err.message : "Something went wrong");
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -144,6 +175,11 @@ export default function ContactPage() {
                   </div>
                 ) : (
                   <form onSubmit={handleSubmit} className="space-y-5">
+                    {error && (
+                      <div className="bg-rust/10 border border-rust/30 text-rust rounded-md px-4 py-3 text-sm">
+                        {error}
+                      </div>
+                    )}
                     <div className="grid sm:grid-cols-2 gap-4">
                       <div>
                         <label
@@ -154,6 +190,7 @@ export default function ContactPage() {
                         </label>
                         <Input
                           id="firstName"
+                          name="firstName"
                           placeholder="Your first name"
                           required
                         />
@@ -167,6 +204,7 @@ export default function ContactPage() {
                         </label>
                         <Input
                           id="lastName"
+                          name="lastName"
                           placeholder="Your last name"
                           required
                         />
@@ -181,6 +219,7 @@ export default function ContactPage() {
                       </label>
                       <Input
                         id="email"
+                        name="email"
                         type="email"
                         placeholder="your@email.com"
                         required
@@ -195,6 +234,7 @@ export default function ContactPage() {
                       </label>
                       <Input
                         id="subject"
+                        name="subject"
                         placeholder="What's this about?"
                         required
                       />
@@ -208,6 +248,7 @@ export default function ContactPage() {
                       </label>
                       <Textarea
                         id="message"
+                        name="message"
                         placeholder="Tell us what's on your mind..."
                         required
                       />
@@ -216,9 +257,10 @@ export default function ContactPage() {
                       type="submit"
                       size="lg"
                       className="w-full uppercase tracking-wider"
+                      disabled={loading}
                     >
                       <Send className="w-4 h-4 mr-2" />
-                      Send Message
+                      {loading ? "Sending..." : "Send Message"}
                     </Button>
                   </form>
                 )}
