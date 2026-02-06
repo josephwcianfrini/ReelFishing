@@ -6,7 +6,7 @@ export default function Footer() {
   return (
     <footer className="bg-charcoal text-cream">
       {/* Top accent bar */}
-      <div className="h-1 bg-gradient-to-r from-moss via-sand to-rust" />
+      <div className="h-1 bg-gradient-to-r from-bayou via-water to-bayou" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
@@ -20,7 +20,7 @@ export default function Footer() {
             </div>
             <p className="text-cream/70 text-sm leading-relaxed">
               Born on the bayou, built for the water. Premium fishing apparel
-              rooted in southern Louisiana tradition and western grit.
+              rooted in southern Louisiana tradition and bayou grit.
             </p>
           </div>
 
@@ -71,7 +71,7 @@ export default function Footer() {
             &copy; {new Date().getFullYear()} Reel Fishing. All rights reserved.
           </p>
           <p className="text-cream/40 text-xs">
-            Southern Made &bull; Western Worn &bull; Water Tested
+            Southern Made &bull; Bayou Born &bull; Water Tested
           </p>
         </div>
       </div>
